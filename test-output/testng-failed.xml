@@ -6,7 +6,7 @@
       <class name="HomePage.HomePageTestCases">
         <methods>
           <include name="mySetup"/>
-          <include name="CheckTheContactNumber"/>
+          <include name="CheckHotelTabIsNotSelected"/>
         </methods>
       </class> <!-- HomePage.HomePageTestCases -->
     </classes>
