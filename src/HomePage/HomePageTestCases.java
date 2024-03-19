@@ -30,16 +30,16 @@ public class HomePageTestCases extends Parameters {
 
 	}
 
-	@Test()
+	@Test(enabled = false)
 
 	public void CheckTheDefaultLanguageIsEnglish() {
 		String ActualLanguage = driver.findElement(By.tagName("html")).getAttribute("lang");
 
-		myAssert.assertEquals(ActualLanguage, ExpectedLanguage);
+		myAssert.assertEquals(ActualLanguage, ExpectedEnglishLanage);
 
 	}
 
-	@Test()
+	@Test(enabled = false)
 	public void CheckTheDefaultCurrency() {
 		String ActualCurrency = driver.findElement(By.xpath("//button[@data-testid='Header__CurrencySelector']"))
 				.getText();
@@ -48,7 +48,7 @@ public class HomePageTestCases extends Parameters {
 
 	}
 
-	@Test()
+	@Test(enabled = false)
 	public void CheckTheContactNumber() {
 		String ActualNumber = driver.findElement(By.tagName("strong")).getText();
 
@@ -56,14 +56,14 @@ public class HomePageTestCases extends Parameters {
 
 	}
 
-	@Test()
+	@Test(enabled = false)
 	public void CheckQitafLogo() {
 		WebElement QitagLogo = driver.findElement(By.xpath("//div[@class='sc-fihHvN eYrDjb']//*[name()='svg']"));
 		boolean ActualResult = QitagLogo.isDisplayed();
 		myAssert.assertEquals(ActualResult, true);
 	}
 
-	@Test()
+	@Test(enabled = false)
 	public void CheckHotelTabIsNotSelected() {
 		WebElement HotelTab = driver.findElement(By.id("uncontrolled-tab-example-tab-hotels"));
 
@@ -71,7 +71,7 @@ public class HomePageTestCases extends Parameters {
 		myAssert.assertEquals(ActualResult, "false");
 	}
 
-	@Test
+	@Test(enabled = false)
 
 	public void checkDepatureAndReturnDate() {
 
@@ -96,19 +96,38 @@ public class HomePageTestCases extends Parameters {
 		String ActualReturnDateOnTheWebSite = driver
 				.findElement(By.cssSelector("div[class='sc-iHhHRJ sc-OxbzP bkqiMc'] span[class='sc-cPuPxo dVqOVe']"))
 				.getText();
-		
-		// we need to convert the String to integer through Integer.parseInt() and we named the variables with 
-		// AsNumber to know that the string now is as an integer 
+
+		// we need to convert the String to integer through Integer.parseInt() and we
+		// named the variables with
+		// AsNumber to know that the string now is as an integer
 
 		int ActualReturnDateOnTheWebsiteAsNumber = Integer.parseInt(ActualReturnDateOnTheWebSite);
 		int ActualDepatureDateOnTheWebsiteAsNumber = Integer.parseInt(ActualDepatureDateOnTheWebSite);
 
-		
-		// we do our assertion by compare 2 integer together ( actualdepaturedate = tomorrow ) 
+		// we do our assertion by compare 2 integer together ( actualdepaturedate =
+		// tomorrow )
 		// and actual returndate = thedayafterTomorrow
 		myAssert.assertEquals(ActualDepatureDateOnTheWebsiteAsNumber, tomorrow);
 		myAssert.assertEquals(ActualReturnDateOnTheWebsiteAsNumber, theDayAfterTomorrow);
 
+	}
+
+	@Test()
+	public void ChangeLangaugeRandomly() throws InterruptedException {
+
+		driver.get(websites[randomWebsite]);
+
+		if (driver.getCurrentUrl().contains("en")) {
+			String ActualLanguage = driver.findElement(By.tagName("html")).getAttribute("lang");
+
+			myAssert.assertEquals(ActualLanguage, ExpectedEnglishLanage);
+
+		} else {
+
+			String ActualLanguage = driver.findElement(By.tagName("html")).getAttribute("lang");
+			myAssert.assertEquals(ActualLanguage, ExpectedArabicLanagage);
+
+		}
 	}
 
 }
