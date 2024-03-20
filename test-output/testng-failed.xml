@@ -5,7 +5,7 @@
     <classes>
       <class name="HotelSearchTest.BookingHotelTestCases">
         <methods>
-          <include name="myTest"/>
+          <include name="SortPricesFromLowToHigh"/>
           <include name="mySetup"/>
         </methods>
       </class> <!-- HotelSearchTest.BookingHotelTestCases -->
